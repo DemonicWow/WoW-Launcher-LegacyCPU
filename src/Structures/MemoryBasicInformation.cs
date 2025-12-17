@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Arctium.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-namespace Arctium.WoW.Launcher.Structures;
+namespace Arctium.Game.Launcher.Structures;
 
 [StructLayout(LayoutKind.Sequential)]
 struct MemoryBasicInformation
@@ -10,9 +10,9 @@ struct MemoryBasicInformation
     public nint AllocationBase;
     public MemProtection AllocationProtect;
     public nint RegionSize;
-    public MemState State;
+    public int State;
     public MemProtection Protect;
-    public MemType Type;
+    public int Type;
 
     public static int Size => Marshal.SizeOf<MemoryBasicInformation>();
 }

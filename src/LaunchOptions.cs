@@ -4,21 +4,19 @@
 using System.CommandLine.Builder;
 using System.CommandLine.Parsing;
 
-namespace Arctium.WoW.Launcher;
+namespace Arctium.Game.Launcher;
 
 static class LaunchOptions
 {
-    public static bool IsDevModeAllowed { get; set; }
-
     public static Option<GameVersion> Version = new("--version", () => GameVersion.Retail);
     public static Option<string> GamePath = new("--path");
     public static Option<string> GameBinary = new("--binary");
     public static Option<bool> KeepCache = new("--keepcache", () => true);
-    public static Option<bool> UseStaticAuthSeed = new("--staticseed");
-    public static Option<bool> DevMode = new("--dev", () => true, "Required for local development without valid certificates.");
+    public static Option<string> VersionUrl = new("--versionurl");
+    public static Option<string> CdnsUrl = new("--cdnsurl");
     public static Option<string> ProductName = new("--product", () => "wow");
     public static Option<string> CdnRegion = new("--region", () => "EU");
-    public static Option<bool> SkipConnectionPatching = new("--skip", () => false, "Allows connection to servers that come with already patched clients.");
+    public static Option<string> BgsPortal = new("--portal");
 
     // Game command line options.
     public static Option<string> GameConfig = new("-config", () => "Config.wtf");
@@ -31,18 +29,18 @@ static class LaunchOptions
         .UseSuggestDirective()
         .Build();
 
-    public static RootCommand RootCommand = new("Arctium WoW Launcher")
+    public static RootCommand RootCommand = new("Arctium Game Launcher")
     {
         Version,
         GamePath,
         GameBinary,
         KeepCache,
-        UseStaticAuthSeed,
-        DevMode,
+        VersionUrl,
+        CdnsUrl,
         ProductName,
         CdnRegion,
+        BgsPortal,
         GameConfig,
-        SkipConnectionPatching
     };
 
     static Command ConfigureCommandLine(Command rootCommand)
