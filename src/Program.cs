@@ -1,10 +1,15 @@
-﻿// Copyright (c) Arctium.
+// Copyright (c) Arctium.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using System.CommandLine.Parsing;
+using System.Diagnostics;
 using Arctium.Game.Launcher;
-
 using static Arctium.Game.Launcher.Misc.Helpers;
+
+// Force legacy-safe runtime behavior for old CPUs
+AppContext.SetSwitch("System.Runtime.TieredCompilation", false);
+AppContext.SetSwitch("System.Runtime.CompilerServices.RuntimeFeature.IsDynamicCodeSupported", true);
+AppContext.SetSwitch("System.Runtime.EnableSIMD", false);
 
 PublisherCheck();
 PrintHeader();
